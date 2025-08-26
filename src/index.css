@@ -1,42 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* BMW-themed Neumorphism Design System */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    /* BMW Color Palette */
+    --background: 0 0% 100%; /* Pure white base */
+    --card-surface: 210 17% 97%; /* Light neumorphism surface #F5F7FA */
+    
+    --bmw-blue: 207 100% 35%; /* BMW Blue #0066B1 */
+    --bmw-blue-light: 207 100% 45%;
+    --bmw-red: 8 85% 50%; /* BMW Red #E2231A */
+    --bmw-red-light: 8 85% 60%;
+    --bmw-black: 0 0% 7%; /* Deep black #111111 */
+    
+    --text-primary: 0 0% 10%; /* #1A1A1A */
+    --text-secondary: 0 0% 27%; /* #444444 */
+    
+    /* Neumorphism Shadow System */
+    --shadow-light: 0 0% 100%; /* Pure white highlight */
+    --shadow-dark: 220 14% 85%; /* #D1D9E6 */
+    
+    /* Semantic Design Tokens */
+    --primary: var(--bmw-blue);
+    --primary-foreground: 0 0% 100%;
+    --secondary: var(--bmw-red);
+    --secondary-foreground: 0 0% 100%;
+    
+    --card: var(--card-surface);
+    --card-foreground: var(--text-primary);
+    
+    --foreground: var(--text-primary);
+    --muted-foreground: var(--text-secondary);
+    
+    --border: 220 14% 85%;
+    --input: var(--card-surface);
+    --ring: var(--bmw-blue);
+    
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +104,81 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Neumorphism Effects */
+  .neu-card {
+    @apply bg-card rounded-2xl;
+    box-shadow: 
+      8px 8px 16px hsl(var(--shadow-dark)),
+      -8px -8px 16px hsl(var(--shadow-light));
+  }
+  
+  .neu-pressed {
+    box-shadow: 
+      inset 4px 4px 8px hsl(var(--shadow-dark)),
+      inset -4px -4px 8px hsl(var(--shadow-light));
+  }
+  
+  .neu-input {
+    @apply bg-input border-0 rounded-xl px-4 py-3;
+    box-shadow: 
+      inset 3px 3px 6px hsl(var(--shadow-dark)),
+      inset -3px -3px 6px hsl(var(--shadow-light));
+  }
+  
+  .neu-button {
+    @apply rounded-xl px-6 py-3 font-medium transition-all duration-200;
+    box-shadow: 
+      4px 4px 8px hsl(var(--shadow-dark)),
+      -4px -4px 8px hsl(var(--shadow-light));
+  }
+  
+  .neu-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 
+      6px 6px 12px hsl(var(--shadow-dark)),
+      -6px -6px 12px hsl(var(--shadow-light));
+  }
+  
+  .neu-button:active {
+    transform: translateY(0);
+    box-shadow: 
+      inset 2px 2px 4px hsl(var(--shadow-dark)),
+      inset -2px -2px 4px hsl(var(--shadow-light));
+  }
+  
+  /* BMW Gradient Buttons */
+  .btn-bmw-blue {
+    background: linear-gradient(135deg, hsl(var(--bmw-blue)) 0%, hsl(var(--bmw-blue-light)) 100%);
+    @apply text-white;
+  }
+  
+  .btn-bmw-red {
+    background: linear-gradient(135deg, hsl(var(--bmw-red)) 0%, hsl(var(--bmw-red-light)) 100%);
+    @apply text-white;
+  }
+  
+  /* Animations */
+  .fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
   }
 }

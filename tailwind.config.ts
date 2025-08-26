@@ -18,12 +18,27 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				inter: ['Inter', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				
+				// BMW Color System
+				'bmw-blue': 'hsl(var(--bmw-blue))',
+				'bmw-blue-light': 'hsl(var(--bmw-blue-light))',
+				'bmw-red': 'hsl(var(--bmw-red))',
+				'bmw-red-light': 'hsl(var(--bmw-red-light))',
+				'bmw-black': 'hsl(var(--bmw-black))',
+				
+				'text-primary': 'hsl(var(--text-primary))',
+				'text-secondary': 'hsl(var(--text-secondary))',
+				'card-surface': 'hsl(var(--card-surface))',
+				
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
